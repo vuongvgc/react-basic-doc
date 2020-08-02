@@ -298,6 +298,7 @@ React calls the Comment component with
 
 */
 //Extracting Components
+/*
 function formatDate(date) {
     return date.toLocaleDateString();
   };
@@ -348,3 +349,158 @@ ReactDOM.render(
     />,
     document.getElementById('root')
 );
+*/
+/*--------------------------
+----State and lifecycle ----
+------------------------- */
+/*
+function Clock(props) {
+    return (
+        <div>
+            <h1>Hello World !</h1>
+            <h2>It is {props.date.toLocaleTimeString()}.</h2>
+        </div>
+    )
+    // new Date().tolocaleTimeString()
+};
+
+function tick() {
+    ReactDOM.render(
+        <Clock date={new Date()}/>,
+        document.getElementById('root')
+    )
+};
+setInterval(tick, 1000);
+*/
+/*
+class Clock extends React.Component {
+    render() {
+        return (
+        <div>
+            <h1>Hello World !</h1>
+            <h2>It is {this.props.date.toLocaleTimeString()}.</h2>
+        </div>
+        )
+    };
+}
+function tick() {
+    ReactDOM.render(
+        <Clock date={new Date()}/>,
+        document.getElementById('root')
+    )
+};
+setInterval(tick, 1000);
+*/
+// Adding local State to a Class
+/*
+class Clock extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {date: new Date()};
+    };
+    render() {
+        return (
+        <div>
+            <h1>Hello World !</h1>
+            <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+        </div>
+        )
+    };
+}
+ReactDOM.render(
+    <Clock/>,
+    document.getElementById('root')
+)
+*/
+//adding Lifecycle Methods to a Class
+/*
+class Clock extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {date: new Date()};
+    };
+    componentDidMount() {
+        this.TimerID = setInterval(
+            () => this.tick(), 1000
+        );
+    }
+    tick() {
+        this.setState({
+            date: new Date()
+        });
+    }
+    componentWillUnmout () {
+        clearInterval(this.TimerID);
+    }
+    render() {
+        return (
+        <div>
+            <h1>Hello World !</h1>
+            <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+        </div>
+        )
+    };
+}
+ReactDOM.render(
+    <Clock/>,
+    document.getElementById('root')
+)
+*/
+/** Because this.props and this.state may be updated asynchronously, you should not rely on their values for calculating the next state
+  this.setState({
+  counter: this.state.counter + this.props.increment,
+});.
+*/
+/** This is why state is often called local or encapsulated. It is not accessible to any component other than the one that owns and sets it.
+*/
+class Clock extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {date: new Date()};
+    };
+    componentDidMount() {
+        this.TimerID = setInterval(
+            () => this.tick(), 1000
+        );
+    }
+    tick() {
+        this.setState({
+            date: new Date()
+        });
+    }
+    componentWillUnmout () {
+        clearInterval(this.TimerID);
+    }
+    render() {
+        return (
+        <div>
+            <h1>Hello World !</h1>
+            <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+        </div>
+        )
+    };
+}
+function App() {
+    return (
+        <div>
+            <Clock/>
+            <Clock/>
+            <Clock/>
+        </div>
+    )
+}
+ReactDOM.render(
+    App(),
+    document.getElementById('root')
+)
+
+
+
+
+
+
+
+
+
+
+
