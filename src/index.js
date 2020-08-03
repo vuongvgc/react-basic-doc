@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
+import './style.css';
 /* 
 ReactDOM.render(
     <h1>Hello Victor Do</h1>,
@@ -842,6 +843,7 @@ ReactDOM.render(
     document.getElementById('root')
 )
 */
+/*
 function Mailbox(props) {
     return (
         <div>
@@ -857,3 +859,120 @@ ReactDOM.render(
     <Mailbox unreadMessages = {mail.length}/>,
     document.getElementById('root')
 )
+*/
+/**
+ * It works because in JavaScript, true && expression always evaluates to expression, and false && expression always evaluates to false.
+
+Therefore, if the condition is true, the element right after && will appear in the output. If it is false, React will ignore and skip it.
+
+
+ */
+//Inline If-Else with Conditional Operator
+/*
+function UserGreeting() {
+    return (
+        <h1>Welcome Back</h1>
+    )
+}
+function GuestGreeting() {
+    return (
+        <h1>Please Sign Up</h1>
+    )
+}
+
+function Greeting(props) {
+    const isLoggedIn = props.isLoggedIn;
+    return(
+        <div>
+            {isLoggedIn ?  <UserGreeting/> : <GuestGreeting/>}
+        </div>
+    )
+}
+    
+ReactDOM.render(
+    <Greeting isLoggedIn={false} />,
+    document.getElementById('root')
+)
+*/
+/*
+function UserGreeting() {
+    return (
+        <h1>Welcome Back</h1>
+    )
+}
+function GuestGreeting() {
+    return (
+        <h1>Please Sign Up</h1>
+    )
+}
+
+function Greeting(props) {
+    const isLoggedIn = props.isLoggedIn;
+    if(isLoggedIn) {
+        return (
+            <UserGreeting/>
+        )
+        // Greeting user
+    }
+    else {
+        return (
+            <GuestGreeting/>
+
+        )
+        // greeting guest
+    }
+}
+function LogoutButton(props) {
+    return (
+        <button onClick={props.onClick}>
+            Logout
+        </button>
+    )
+
+}
+function LoginButton(props) {
+    return (
+        <button onClick={props.onClick}>
+            Login
+        </button>
+    )
+}
+class LoginControl extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {isLoggedIn: false};
+        this.handleLoginClick = this.handleLoginClick.bind(this);
+        this.handleLogoutClick = this.handleLogoutClick.bind(this);
+    }
+    handleLoginClick(){
+        this.setState({isLoggedIn: true})
+    }
+    handleLogoutClick(){
+        this.setState({isLoggedIn: false})
+    }
+    render() {
+        const isLoggedIn = this.state.isLoggedIn;
+        let button;
+        if (isLoggedIn) {
+            button = <LogoutButton onClick={this.handleLogoutClick}/>;
+        }
+        else {
+            button = <LoginButton onClick={this.handleLoginClick}/>;
+        }
+        return (
+            <div>
+                <Greeting  isLoggedIn = {isLoggedIn}/>
+                {isLoggedIn 
+                ? <LogoutButton onClick={this.handleLogoutClick}/> 
+                : <LoginButton onClick={this.handleLoginClick}/>
+                }
+            </div>
+        )
+    }
+}
+ReactDOM.render(
+    <LoginControl />,
+    document.getElementById('root')
+)
+*/
+//Preventing Component from Rendering
