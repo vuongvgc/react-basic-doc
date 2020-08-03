@@ -687,6 +687,7 @@ ReactDOM.render(
     document.getElementById('root')
 )
 */
+/*
 function UserGreeting() {
     return (
         <h1>Welcome Back</h1>
@@ -748,7 +749,7 @@ ReactDOM.render(
     <LoginButton />,
     document.getElementById('root')
 )
-
+*/
 /*
 function UserGreeting() {
     return (
@@ -827,3 +828,32 @@ ReactDOM.render(
     document.getElementById('root')
 )
 */
+//Inline If with Logical && Operator
+//You may embed expressions in JSX by wrappin
+/*
+function Mailbox(props) {
+    return (
+        <h1>You have {props.unreadMessages} unread messages.</h1>
+    )
+}
+const mail = ['Victor: Fly', 'Jonas: JS',' React: update']
+ReactDOM.render(
+    <Mailbox unreadMessages = {mail.length}/>,
+    document.getElementById('root')
+)
+*/
+function Mailbox(props) {
+    return (
+        <div>
+            <h1>Hello</h1>
+            {props.unreadMessages > 0 &&
+            <h2>You have {props.unreadMessages} unread messages.
+            </h2> }
+        </div>
+    )
+}
+const mail = ['Victor: Fly', 'Jonas: JS',' React: update', 'React: Redux']
+ReactDOM.render(
+    <Mailbox unreadMessages = {mail.length}/>,
+    document.getElementById('root')
+)
