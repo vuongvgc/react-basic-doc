@@ -577,3 +577,253 @@ ReactDOM.render(
 /**
  * The problem with this syntax is that a different callback is created each time the LoggingButton renders. In most cases, this is fine. However, if this callback is passed as a prop to lower components, those components might do an extra re-rendering. We generally recommend binding in the constructor or using the class fields syntax, to avoid this sort of performance problem.
  */
+/*
+function UserGreeting() {
+    return (
+        <h1>Welcome Back</h1>
+    )
+}
+function GuestGreeting() {
+    return (
+        <h1>Please Sign Up</h1>
+    )
+}
+
+function Greeting(props) {
+    const isLoggedIn = props.isLoggedIn;
+    if(isLoggedIn) {
+        return (
+            <UserGreeting/>
+        )
+        // Greeting user
+    }
+    else {
+        return (
+            <GuestGreeting/>
+        )
+        // greeting guest
+    }
+}
+ReactDOM.render(
+    <Greeting isLoggedIn={true} />,
+    document.getElementById('root')
+)
+*/
+// Element Variable
+/*
+function UserGreeting() {
+    return (
+        <h1>Welcome Back</h1>
+    )
+}
+function GuestGreeting() {
+    return (
+        <h1>Please Sign Up</h1>
+    )
+}
+
+function Greeting(props) {
+    const isLoggedIn = props.isLoggedIn;
+    if(isLoggedIn) {
+        return (
+            <UserGreeting/>
+        )
+        // Greeting user
+    }
+    else {
+        return (
+            <GuestGreeting/>
+        )
+        // greeting guest
+    }
+}
+function LogoutButton(props){
+    return (
+        <button onClick={props.onClick}>
+            Logout
+        </button>
+    )
+};
+function LoginButton(props) {
+    return (
+        <button onClick={props.onClick}>
+            Login
+        </button>
+    )
+};
+class LoginControl extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {isLoggedIn: false};
+        this.handleLoginClick = this.handleLoginClick.bind(this);
+        this.handlelogoutClick = this.handleLogoutClick.bind(this);
+    }
+    handleLoginClick() {
+        this.setState({isLoggedIn: false})
+    }
+    handleLogoutClick() {
+        this.setState({isLoggedIn: true})
+    }
+    render() {
+        const isLoggedIn = this.state.isLoggedIn;
+        let button;
+        if (isLoggedIn) {
+            button = <LogoutButton onClick={this.handleLogoutClick}/>
+        }
+        else {
+            button = <LoginButton onClick={this.handleLoginClick}/>
+        }
+        return(
+            <div>
+                <Greeting isLoggedIn = {isLoggedIn}/>
+                {button}
+            </div>
+        )
+    }
+}
+
+ReactDOM.render(
+    <LoginControl/>,
+    document.getElementById('root')
+)
+*/
+function UserGreeting() {
+    return (
+        <h1>Welcome Back</h1>
+    )
+}
+function GuestGreeting() {
+    return (
+        <h1>Please Sign Up</h1>
+    )
+}
+
+function Greeting(props) {
+    const isLoggedIn = props.isLoggedIn;
+    if(isLoggedIn) {
+        return (
+            <UserGreeting/>
+        )
+        // Greeting user
+    }
+    else {
+        return (
+            <GuestGreeting/>
+
+        )
+        // greeting guest
+    }
+}
+class LoginButton extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {isLoggedIn: false};
+        this.handleLoginClick = this.handleLoginClick.bind(this);
+        this.handleLogoutClick = this.handleLogoutClick.bind(this);
+    }
+    handleLoginClick(){
+        this.setState({isLoggedIn: true})
+    }
+    handleLogoutClick(){
+        this.setState({isLoggedIn: false})
+    }
+    render() {
+        const isLoggedIn = this.state.isLoggedIn;
+        let button;
+        if (isLoggedIn) {
+            button = <button onClick={this.handleLogoutClick}>Login</button>;
+        }
+        else {
+            button = <button onClick={this.handleLoginClick}>Logout</button> ;
+        }
+        return (
+            <div>
+                <Greeting  isLoggedIn = {isLoggedIn}/>
+                {button}
+            </div>
+        )
+    }
+}
+ReactDOM.render(
+    <LoginButton />,
+    document.getElementById('root')
+)
+
+/*
+function UserGreeting() {
+    return (
+        <h1>Welcome Back</h1>
+    )
+}
+function GuestGreeting() {
+    return (
+        <h1>Please Sign Up</h1>
+    )
+}
+
+function Greeting(props) {
+    const isLoggedIn = props.isLoggedIn;
+    if(isLoggedIn) {
+        return (
+            <UserGreeting/>
+        )
+        // Greeting user
+    }
+    else {
+        return (
+            <GuestGreeting/>
+
+        )
+        // greeting guest
+    }
+}
+function LogoutButton(props) {
+    return (
+        <button onClick={props.onClick}>
+            Logout
+        </button>
+    )
+
+}
+function LoginButton(props) {
+    return (
+        <button onClick={props.onClick}>
+            Login
+        </button>
+    )
+}
+class LoginControl extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {isLoggedIn: false};
+        this.handleLoginClick = this.handleLoginClick.bind(this);
+        this.handleLogoutClick = this.handleLogoutClick.bind(this);
+    }
+    handleLoginClick(){
+        this.setState({isLoggedIn: true})
+    }
+    handleLogoutClick(){
+        this.setState({isLoggedIn: false})
+    }
+    render() {
+        const isLoggedIn = this.state.isLoggedIn;
+        let button;
+        if (isLoggedIn) {
+            button = <LogoutButton onClick={this.handleLogoutClick}/>;
+        }
+        else {
+            button = <LoginButton onClick={this.handleLoginClick}/>;
+        }
+        return (
+            <div>
+                <Greeting  isLoggedIn = {isLoggedIn}/>
+                {button}
+            </div>
+        )
+    }
+}
+ReactDOM.render(
+    <LoginControl />,
+    document.getElementById('root')
+)
+*/
