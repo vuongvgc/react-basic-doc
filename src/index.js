@@ -976,3 +976,41 @@ ReactDOM.render(
 )
 */
 //Preventing Component from Rendering
+function WarningBanner(props) {
+    if(!props.warn) {
+        return null;
+    }
+    else {
+        return (
+            <div className="warning">
+                <h1>Warning</h1>
+            </div>
+        )
+    }
+}
+class Page extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {showWarning: false};
+        this.handleToggleClick = this.handleToggleClick.bind(this); 
+    }
+    handleToggleClick() {
+        this.setState(prevState => ({
+          showWarning: !prevState.showWarning
+        }));
+      }
+    render() {
+        return (
+            <div>
+                <WarningBanner warn = {this.state.showWarning}/>
+                <button onClick={this.handleToggleClick}>
+                {this.state.showWarning ? 'Hide' : 'show'}
+                </button>
+            </div>
+        )
+    }
+}
+ReactDOM.render(
+    <Page/>,
+    document.getElementById('root')
+)
