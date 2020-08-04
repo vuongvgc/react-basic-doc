@@ -1175,6 +1175,8 @@ ReactDOM.render(
 /*****************************
  * ***************FORM  *****
  ***************************/
+/// INPUT
+/*
 class NameForm extends React.Component {
     constructor(props) {
         super(props);
@@ -1204,3 +1206,33 @@ ReactDOM.render(
     <NameForm />,
     document.getElementById('root')
 );
+*/
+// The Textarea
+class FormArea extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {value: 'Please write an eassay about your farvorite Dom element'};
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    handleChange(event) {
+        this.setState({value: event.target.value})
+    }
+    handleSubmit(event) {
+        alert('An essay was submitted: ' + this.state.value);
+        event.preventDefault();
+    }
+    render() {
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <textarea value={this.state.value} onChange={this.handleChange}></textarea>
+                <br/>
+                <input type='submit' value="Submit"/>
+            </form>
+        )
+    }
+}
+ReactDOM.render(
+    <FormArea />,
+    document.getElementById('root')
+)
