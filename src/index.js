@@ -1069,9 +1069,70 @@ ReactDOM.render(
     document.getElementById('root')
 )
 */
+/*
 const human = ['Jonas',' Victor', 'React', 'Redux'] ;
 const listItem = human.map((human) => <li>{human}</li>)
 ReactDOM.render(
     <ul>{listItem}</ul>,
+    document.getElementById('root')
+)
+*/
+/*
+function NumberList(props) {
+    const number = props.list ;
+    const ListItem = number.map((number) => 
+    <li key={number.toString()}>
+    {number -1}
+    </li>);
+    return (
+        <ul>
+            {ListItem}
+        </ul>
+    )
+}
+const number = [2, 4, 6, 8]
+ReactDOM.render(
+    <NumberList list={number}/>,
+    document.getElementById('root')
+)
+*/
+// Key : Key = {todo.id}  recomandation* Key = {index} mac dinh
+/*
+function NumberList(props) {
+    const number = props.list ;
+    const ListItem = number.map((number, index) => 
+    <li key={index}>
+    {index}
+    </li>);
+    return (
+        <ul>
+            {ListItem}
+        </ul>
+    )
+}
+const number = [2, 4, 6, 8]
+ReactDOM.render(
+    <NumberList list={number}/>,
+    document.getElementById('root')
+)
+*/
+// Chia nho component ra thi nen gan key o phan tu cha
+function ListItem(props) {
+    return(
+        <li>{props.value}</li>
+    )
+}
+function NumberList(props) {
+    const number = props.list ;
+    const ListItems = number.map((number, index) => (<ListItem key={number.toString()} value={number}/>));
+    return (
+        <ul>
+            {ListItems}
+        </ul>
+    )
+}
+const number = [2, 4, 6, 8]
+ReactDOM.render(
+    <NumberList list={number}/>,
     document.getElementById('root')
 )
