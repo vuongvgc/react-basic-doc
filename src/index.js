@@ -1138,6 +1138,7 @@ ReactDOM.render(
     document.getElementById('root')
 )
 */
+/*
 const posts = [
     {id: 1, title: 'Hello World', content: 'Welcom to learnung React!'},
     {id: 2, title: 'Instalation', content: 'You can install React from npm.'}
@@ -1170,3 +1171,36 @@ ReactDOM.render(
     <Blog posts={posts} />,
     document.getElementById('root')
 )
+*/
+/*****************************
+ * ***************FORM  *****
+ ***************************/
+class NameForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {value: ' '};
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    handleChange(event){
+        this.setState({value: event.target.value})
+    }
+    handleSubmit(event) {
+            alert(`A name was submitted:${this.state.value}`);
+            event.preventDefault();
+    }
+    render() {
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <label>Name</label>
+                <input  type="text" value={this.state.value} onChange={this.handleChange}></input>
+                <button type="submit">submit</button>
+            </form>
+        );
+    }
+}
+
+ReactDOM.render(
+    <NameForm />,
+    document.getElementById('root')
+);
