@@ -1208,6 +1208,7 @@ ReactDOM.render(
 );
 */
 // The Textarea
+/*
 class FormArea extends React.Component {
     constructor(props){
         super(props);
@@ -1234,5 +1235,42 @@ class FormArea extends React.Component {
 }
 ReactDOM.render(
     <FormArea />,
+    document.getElementById('root')
+)
+*/
+
+// Selection
+class FormSelect extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {value: 'Coconut'}
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    handleChange(event) {
+        this.setState({value: event.target.value})
+    }
+    handleSubmit(event) {
+        alert('This subbit was' + this.state.value);
+        event.preventDefault();
+    }
+    render(){
+        return (
+            <form onSubmit={this.handleSubmit}>
+                Please chosse food what you want : 
+                <select value={this.state.value} onChange={this.handleChange}>
+                    <option value="Grapefruit">Grapefruit</option>
+                    <option value="lime">lime</option>
+                    <option value="coconut">coconut</option>
+                    <option value="mango">mango</option>
+                </select>
+                <br/>
+                <button type="submit" value="Submit">Submit</button>
+            </form>
+        )
+    }
+}
+ReactDOM.render(
+    <FormSelect />,
     document.getElementById('root')
 )
