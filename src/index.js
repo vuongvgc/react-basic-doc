@@ -976,6 +976,7 @@ ReactDOM.render(
 )
 */
 //Preventing Component from Rendering
+/*
 function WarningBanner(props) {
     if(!props.warn) {
         return null;
@@ -1012,5 +1013,65 @@ class Page extends React.Component {
 }
 ReactDOM.render(
     <Page/>,
+    document.getElementById('root')
+)
+*/
+/*--------------------------
+----List and key---- ----
+------------------------- */
+/**
+ 1
+ 2
+ 3
+ 4
+ 5
+<li>number[0]</li>
+.
+.
+.
+<li>number[4]</li>
+ */
+/*
+const numbers = [1, 2, 3, 4, 5];
+function ListItem(props) {
+    const number = props.list;
+    return (
+        <ul>
+            <li>{number[0]}</li>
+            <li>{number[1]}</li>
+            <li>{number[2]}</li>
+            <li>{number[3]}</li>
+            <li>{number[4]}</li>
+        </ul>
+    )
+
+}
+ReactDOM.render(
+    <ListItem list={numbers}/>,
+    document.getElementById('root')
+)
+*/
+/*
+const numbers = [1, 2, 3, 4, 5];
+function ListItem(props) {
+    const number = props.list;
+    let listItem = number.map((number) =>
+            <ul>
+                <li>{number}</li>
+            </ul>
+        )
+        return listItem;
+    
+
+}
+ReactDOM.render(
+    <ListItem list={numbers}/>,
+    document.getElementById('root')
+)
+*/
+const human = ['Jonas',' Victor', 'React', 'Redux'] ;
+const listItem = human.map((human) => <li>{human}</li>)
+ReactDOM.render(
+    <ul>{listItem}</ul>,
     document.getElementById('root')
 )
