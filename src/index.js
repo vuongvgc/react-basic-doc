@@ -1117,6 +1117,7 @@ ReactDOM.render(
 )
 */
 // Chia nho component ra thi nen gan key o phan tu cha
+/*
 function ListItem(props) {
     return(
         <li>{props.value}</li>
@@ -1134,5 +1135,38 @@ function NumberList(props) {
 const number = [2, 4, 6, 8]
 ReactDOM.render(
     <NumberList list={number}/>,
+    document.getElementById('root')
+)
+*/
+const posts = [
+    {id: 1, title: 'Hello World', content: 'Welcom to learnung React!'},
+    {id: 2, title: 'Instalation', content: 'You can install React from npm.'}
+];
+function Blog(props) {
+    const sidebar = props.posts.map((post) =>
+    <div key={post.id}>
+        <h3>{post.title}</h3>
+    </div>
+    )
+    const content = props.posts.map((post) =>
+    <div key={post.id}>
+        <h3>{post.title}</h3>
+        <p>{post.content}</p>
+    </div>
+    );
+    return(
+        <div>
+            <div>
+                {sidebar}
+            </div>
+            <div>
+                {content}
+            </div>
+           
+        </div>
+    );
+}
+ReactDOM.render(
+    <Blog posts={posts} />,
     document.getElementById('root')
 )
