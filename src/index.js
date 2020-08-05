@@ -1333,6 +1333,7 @@ ReactDOM.render(
  * *****Lifting State Up******
  ******************************/
 // Nhiet Do soi voi input
+/*
 function BoiltingVerdic(props) {
     if(props.temperature >= 100) {
         return <h1 className="warning">The water would boil</h1>
@@ -1363,7 +1364,7 @@ ReactDOM.render(
     <Caculator />,
     document.getElementById('root')
 )
-/*
+*/
 const scaleName = {
     c: 'Celsius',
     f: 'Fahrenheit'
@@ -1406,4 +1407,3 @@ ReactDOM.render(
     <Caculator />,
     document.getElementById('root')
 )
-*/
