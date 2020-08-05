@@ -1369,18 +1369,44 @@ const scaleName = {
     c: 'Celsius',
     f: 'Fahrenheit'
 }
+// Covert temperature
+function toCelsius(fahrenheit) {
+    return (fahrenheit - 32) * 5 / 9;
+}
+function toFahrenheit(celsius) {
+    return (celsius * 9 / 5) + 32;
+}
+// tra ve 1 chuoi rong neu nhu tham so khong hop le va lam trong 3 chu so thap phan
+function tryConvert(temperature, convent) {
+    const input = parseFloat(temperature);
+    if(Number.isNaN(input)) {
+        return '';
+    }
+    const output = convent(input);
+    const rounded = Math.round(output * 1000) / 1000;
+    return rounded.toString();
+}
+function BoiltingVerdic(props) {
+    const tempCelsius = props.temperature;
+    if(tempCelsius >= 100) {
+        return <h1 className="warning"> The water would boil </h1>
+    }
+    return <h1 className="warning normal">The water would not boil</h1>
+}
+/**
+ * Trong ví dụ, tryConvert('abc', toCelsius) trả về một chuỗi rỗng, và tryConvert('10.22', toFahrenheit) cho kết quả là '50.396'
+ */
 class TemperatureInput extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {temperature: ''};
         this.handleChange = this.handleChange.bind(this);
     }
     handleChange(event) {
-        this.setState({temperature: event.target.value})
+        this.props.onTemperatureChange(event.target.value);
     }
     render(){
         const scale =this.props.scale;
-        const temperature = this.state.temperature;
+        const temperature = this.props.temperature;
         return(
             <fieldset>
                 <legend>
@@ -1392,12 +1418,38 @@ class TemperatureInput extends React.Component {
     }
 }
 class Caculator extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            scale: 'c',
+            temp: ''
+        };
+        this.handleCelsiusChange = this.handleCelsiusChange.bind(this);
+        this.handlefahrenheitChange = this.handlefahrenheitChange.bind(this);
+        
+    }
+    handleCelsiusChange(tempInput) {
+        this.setState({
+            scale: 'c',
+            temp: tempInput
+    });
+    }
+    handlefahrenheitChange(tempInput) {
+        this.setState({
+            scale: 'f',
+            temp: tempInput
+        });
+    }
     render() {
+        const temp = this.state.temp;
+        const scale = this.state.scale;
+        const celsius = scale === 'f' ? tryConvert(temp, toCelsius) : temp;
+        const fahrenheit = scale === 'c' ? tryConvert(temp, toFahrenheit) : temp;
         return(
         <div>
-            <h1>Vuong Do</h1>
-            <TemperatureInput scale='c' />
-            <TemperatureInput scale='f' />
+            <TemperatureInput scale='c' temperature={celsius} onTemperatureChange={this.handleCelsiusChange}/>
+            <TemperatureInput scale='f' temperature={fahrenheit} onTemperatureChange={this.handlefahrenheitChange}/>
+            <BoiltingVerdic temperature={celsius}/>
         </div>
         )
         
