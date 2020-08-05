@@ -14,4 +14,9 @@
   
     font-size: 14pt;
     color: white;
+    padding: 25px;
+    margin: 25px 0;
+  }
+  .normal {
+    background-color:green;
   }

@@ -1277,6 +1277,7 @@ ReactDOM.render(
 )
 */
 // Mul Input Checkbox and input 
+/*
 class Reservation extends React.Component {
     constructor(props) {
         super(props);
@@ -1322,3 +1323,87 @@ ReactDOM.render(
     <Reservation />,
     document.getElementById('root')
 )
+*/
+/**Đây là cách sử dụng cú pháp computed property name trong ES6 để cập nhật state đúng với những input dược định danh bằng thuộc tính name
+ * this.setState({
+  [name]: value
+});
+ */
+/****************************
+ * *****Lifting State Up******
+ ******************************/
+// Nhiet Do soi voi input
+function BoiltingVerdic(props) {
+    if(props.temperature >= 100) {
+        return <h1 className="warning">The water would boil</h1>
+    }
+    return <h1 className="warning normal">The water  would not boil</h1>
+}
+class Caculator extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {temperature: ''}
+        this.handleChange = this.handleChange.bind(this)
+    }
+    handleChange(event) {
+        this.setState({temperature: event.target.value})
+    }
+    render() {
+        return(
+            <div>
+                <form>
+                    <input type="number" value={this.state.temperature} onChange={this.handleChange}></input>
+                </form>
+                <BoiltingVerdic temperature={this.state.temperature} />
+            </div>
+        )
+    }
+}
+ReactDOM.render(
+    <Caculator />,
+    document.getElementById('root')
+)
+/*
+const scaleName = {
+    c: 'Celsius',
+    f: 'Fahrenheit'
+}
+class TemperatureInput extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {temperature: ''};
+        this.handleChange = this.handleChange.bind(this);
+    }
+    handleChange(event) {
+        this.setState({temperature: event.target.value})
+    }
+    render(){
+        const scale =this.props.scale;
+        const temperature = this.state.temperature;
+        return(
+            <fieldset>
+                <legend>
+                Enter temperature in {scaleName[scale]}:
+                </legend>
+                <input type='number' value={temperature} onChange={this.handleChange}/>
+            </fieldset>
+        )
+    }
+}
+class Caculator extends React.Component {
+    render() {
+        return(
+        <div>
+            <h1>Vuong Do</h1>
+            <TemperatureInput scale='c' />
+            <TemperatureInput scale='f' />
+        </div>
+        )
+        
+    }
+}
+ReactDOM.render(
+    <Caculator />,
+    document.getElementById('root')
+)
+*/
