@@ -1516,6 +1516,7 @@ ReactDOM.render(
     document.getElementById('root')
 )
 */
+/*
 class InforInput extends React.Component {
     constructor(props) {
         super(props);
@@ -1524,7 +1525,6 @@ class InforInput extends React.Component {
             email: ''
         }
         this.handleChange = this.handleChange.bind(this);
-       // this.handleChangeEmail = this.handleChangeEmail.bind(this);
     }
     handleChange(event){
         if(event.target.type === "text") {
@@ -1539,14 +1539,7 @@ class InforInput extends React.Component {
         }
        
         
-    }
-    /*
-    handleChangeEmail(event){
-        this.setState({
-            email: event.target.value
-        })
-    }
-    */
+    }  
     render() {
         return(
             <div>
@@ -1617,5 +1610,54 @@ function App(){
 
 ReactDOM.render(
     <App />,
+    document.getElementById('root')
+)
+*/
+function FancyBorder(props) {
+    return(
+        <div className={'FancyBorder FancyBorder-' + props.color}>
+            {props.children}
+        </div>
+    )
+}
+function Dialog(props) {
+    return(
+        <FancyBorder color="blue">
+            <h1>{props.title}</h1>
+            <p>{props.content}</p>
+            {props.children}
+        </FancyBorder>
+    )
+}
+class SignUpDialog extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            login:''
+        };
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    }
+    handleChange(event){
+        this.setState({
+            login: event.target.value
+        })
+    }
+    handleSubmit() {
+        alert(`Sign Me up with  ${this.state.login}`)
+    }
+    render() {
+        return(
+            <Dialog title="Mars Exploration Program" content="How should we refer to you?">
+            <input type="email" value={this.state.login} onChange={this.handleChange}/>
+            <br/>
+            <button value="Sign Me Up" onClick={this.handleSubmit}>Sign Me Up</button>
+            </Dialog>
+        )
+    }
+}
+
+ReactDOM.render(
+    <SignUpDialog />,
     document.getElementById('root')
 )
