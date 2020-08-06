@@ -1557,8 +1557,7 @@ class InforInput extends React.Component {
                 <fieldset>
                     <legend>Enter your Email</legend>
                     <input type="email" value={this.state.email} onChange={this.handleChange}/>
-                </fieldset>
-                <Infor name={this.state.name} email={this.state.email}/>
+                </fieldset>  
             </div>
         )
     }
@@ -1587,7 +1586,7 @@ function  Contacts() {
 function Chat() {
     return (
         <div className="Chat">
-            Chat with me
+            <InforInput />
         </div>
 
     )
@@ -1612,7 +1611,7 @@ function App(){
         <SplitPane 
             center={<Header />} 
             left={<Contacts />} 
-            right={<InforInput />}/>
+            right={<Chat />}/>
     )
 }
 
