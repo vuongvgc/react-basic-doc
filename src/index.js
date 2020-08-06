@@ -1365,6 +1365,10 @@ ReactDOM.render(
     document.getElementById('root')
 )
 */
+/******************************
+ *********Boiling Project******
+ ******************************/
+/*
 const scaleName = {
     c: 'Celsius',
     f: 'Fahrenheit'
@@ -1393,9 +1397,11 @@ function BoiltingVerdic(props) {
     }
     return <h1 className="warning normal">The water would not boil</h1>
 }
+*/
 /**
  * Trong ví dụ, tryConvert('abc', toCelsius) trả về một chuỗi rỗng, và tryConvert('10.22', toFahrenheit) cho kết quả là '50.396'
  */
+/*
 class TemperatureInput extends React.Component {
     constructor(props) {
         super(props);
@@ -1457,5 +1463,54 @@ class Caculator extends React.Component {
 }
 ReactDOM.render(
     <Caculator />,
+    document.getElementById('root')
+)
+*/
+/******************************
+ *********Boiling Project******
+ ******************************/
+function FancyBorder(color) {
+        return(
+            <div className={'FancyBorder FancyBorder-' + color.color}>
+                {color.children}
+            </div>
+        )
+}
+function WelcomeDialog(){
+    return(
+        <FancyBorder color={'blue'}>
+            <h1 className="Dialog-title">
+                Welcome
+            </h1>
+            <p className="Dialog-message">
+                Thank you for visiting our spacecraft !
+            </p>
+        </FancyBorder>
+    )
+}
+
+function GoodbyeDialog(){
+    return(
+        <FancyBorder color={'green'}>
+            <h1 className="Dialog-title">
+                GoodBye
+            </h1>
+            <p className="Dialog-message">
+                See you next time !
+            </p>
+        </FancyBorder>
+    )
+}
+const el = (
+    <div>
+        <WelcomeDialog />
+        <GoodbyeDialog />
+    </div>
+
+    
+)
+
+ReactDOM.render(
+    el,
     document.getElementById('root')
 )
