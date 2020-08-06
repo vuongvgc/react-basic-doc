@@ -43,3 +43,45 @@
   .Dialog-message {
     font-size: larger;
   }
+
+  html, body, #root {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .Row {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .Row-left {
+    float: left;
+    width: 40%;
+    height: 100%;
+  }
+  
+  .Row-right {
+    float: left;
+    width: 60%;
+    height: 100%;
+  }
+  .Header {
+    color: white;
+    width: 100%;
+    height: auto;
+    background: greenyellow;
+    text-align: center;
+    padding: 5px;
+  }
+  .Contacts {
+    width: 100%;
+    height: 100%; 
+    background: lightblue;
+  }
+  
+  .Chat {
+    width: 100%;
+    height: 100%; 
+    background: pink;
+  }
+  

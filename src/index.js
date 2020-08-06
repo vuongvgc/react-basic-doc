@@ -1469,6 +1469,7 @@ ReactDOM.render(
 /******************************
  *********Boiling Project******
  ******************************/
+/*
 function FancyBorder(color) {
         return(
             <div className={'FancyBorder FancyBorder-' + color.color}>
@@ -1512,5 +1513,110 @@ const el = (
 
 ReactDOM.render(
     el,
+    document.getElementById('root')
+)
+*/
+class InforInput extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: '',
+            email: ''
+        }
+        this.handleChange = this.handleChange.bind(this);
+       // this.handleChangeEmail = this.handleChangeEmail.bind(this);
+    }
+    handleChange(event){
+        if(event.target.type === "text") {
+            this.setState({
+                name: event.target.value
+            })
+        }
+        else {
+            this.setState({
+                email: event.target.value
+            })
+        }
+       
+        
+    }
+    /*
+    handleChangeEmail(event){
+        this.setState({
+            email: event.target.value
+        })
+    }
+    */
+    render() {
+        return(
+            <div>
+                <fieldset>
+                    <legend>Enter your Name</legend>
+                    <input type="text" value={this.state.name} onChange={this.handleChange}/>
+                </fieldset>
+                <fieldset>
+                    <legend>Enter your Email</legend>
+                    <input type="email" value={this.state.email} onChange={this.handleChange}/>
+                </fieldset>
+                <Infor name={this.state.name} email={this.state.email}/>
+            </div>
+        )
+    }
+}
+function Infor(props){
+    return (
+        <address>
+            Name: {props.name}
+            <br/>
+            Email: {props.email}
+        </address>
+    )
+}
+function Header(){
+    return (<div className="Header">
+                <h1>Welcome My Page</h1>
+            </div>)
+}
+function  Contacts() {
+    return (
+        <div className="Contacts">
+            <Infor />
+        </div>
+    )
+}
+function Chat() {
+    return (
+        <div className="Chat">
+            Chat with me
+        </div>
+
+    )
+}
+function SplitPane(props) {
+    return (
+        <div className="Row">
+            <div className="Header">
+                {props.center}
+            </div>
+            <div className="Row-left">
+                {props.left}
+            </div>
+            <div className="Row-right">
+                {props.right}
+            </div>
+        </div>
+    )
+}
+function App(){
+    return(
+        <SplitPane 
+            center={<Header />} 
+            left={<Contacts />} 
+            right={<InforInput />}/>
+    )
+}
+
+ReactDOM.render(
+    <App />,
     document.getElementById('root')
 )
