@@ -1613,6 +1613,7 @@ ReactDOM.render(
     document.getElementById('root')
 )
 */
+/*
 function FancyBorder(props) {
     return(
         <div className={'FancyBorder FancyBorder-' + props.color}>
@@ -1643,7 +1644,8 @@ class SignUpDialog extends React.Component {
             login: event.target.value
         })
     }
-    handleSubmit() {
+    handleSubmit(e) {
+        e.preventDefault();
         alert(`Sign Me up with  ${this.state.login}`)
     }
     render() {
@@ -1659,5 +1661,121 @@ class SignUpDialog extends React.Component {
 
 ReactDOM.render(
     <SignUpDialog />,
+    document.getElementById('root')
+)
+
+*/
+
+/******************************
+ ******Thinking in React ******
+ ******************************/
+
+
+ /******************************
+ ******Thinking in React ******
+ ******************************/
+const PRODUCTS = [
+    {category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
+    {category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball'},
+    {category: 'Sporting Goods', price: '$29.99', stocked: false, name: 'Basketball'},
+    {category: 'Electronics', price: '$99.99', stocked: true, name: 'iPod Touch'},
+    {category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5'},
+    {category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7'}
+  ];
+class ProductCategoryRow extends React.Component {
+    render() {
+        const category = this.props.category;
+    return (
+        <tr>
+            <th colSpan="2">
+                {category}
+            </th>
+        </tr>
+    )
+    }
+}
+class ProductRow extends React.Component {
+    render() {
+        const product = this.props.product;
+        const name = product.stocked ?
+        product.name : 
+        <span style={{color: 'red'}}>
+            {product.name}
+        </span>
+        return (
+            <tr>
+                <td>{name}</td>
+                <td>{product.price}</td>
+            </tr>
+        )
+    }
+}
+class ProductTable extends React.Component {
+    render(){
+        const rows = [];
+        let lastCategory = null;
+        this.props.product.forEach((product) => {
+            if (product.category !== lastCategory) {
+                rows.push(
+                    <ProductCategoryRow
+                        category={product.category}
+                        key={product.category} />
+                );
+            
+            }
+            rows.push(
+                <ProductRow 
+                    product={product}
+                    key={product.name} />
+            );
+            lastCategory = product.category;
+        });
+
+    return(
+        <table>
+            <thead>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {rows}
+                </tbody>
+            </thead>
+        </table>
+        );
+    }
+}
+class SearchBar extends React.Component{
+    render() {
+        return (
+            <form>
+                <input type="text" placeholder="search"/>
+                <input type="submit" value="Search"/>
+                <br />
+                <label for="stock">
+                    <input type="checkbox" />
+                    Only show products in stock
+                </label>
+            </form>
+
+        )
+    }
+}
+class FilterableProductTable extends React.Component {
+    render() {
+        return (
+            <div>
+                <h1>Victor Do Procduct</h1>
+                <SearchBar />
+                <ProductTable product={this.props.ListProduct} />
+            </div>
+        )
+    }
+}
+ReactDOM.render(
+    <FilterableProductTable ListProduct={PRODUCTS} />,
     document.getElementById('root')
 )
