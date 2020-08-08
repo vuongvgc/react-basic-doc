@@ -1682,6 +1682,12 @@ const PRODUCTS = [
     {category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5'},
     {category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7'}
   ];
+
+
+
+
+
+// Filter Product
 class ProductCategoryRow extends React.Component {
     render() {
         const category = this.props.category;
@@ -1775,6 +1781,7 @@ class SearchBar extends React.Component{
                 <br />
                 <label for="stock">
                     <input 
+                    id="stock"
                     type="checkbox" 
                     checked={this.props.inStockOnly}
                     onChange={this.handleChangeCheckBox}
@@ -1820,7 +1827,88 @@ class FilterableProductTable extends React.Component {
         )
     }
 }
+
+
+// Think in React
+
+function ThinkInReact(){
+    return (
+        <div>
+            <a href="https://vi.reactjs.org/docs/thinking-in-react.html" target="_blank" alt="Think in Reac">Think In React</a>
+        </div>
+    )
+}
+
+
+// Sign in
+function HelloGuest(props) {
+    return (
+        <h1>Hello {props.name}, Nice to meet you</h1>
+    )
+}
+class SignUp extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            userName: '',
+            SayHello: ''
+        }
+        this.handleChagneName = this.handleChagneName.bind(this);
+        this.handleHello = this.handleHello.bind(this);
+    }
+    handleChagneName(e) {
+            this.setState({
+                userName: e.target.value
+            })
+    }
+    handleHello() {
+            this.setState( {
+                SayHello: this.state.userName,
+                userName: ''
+            })
+    }
+    render() {
+        return (
+            <div>
+                <form  >
+                    <label for="sign-up">
+                    Please Sign Up
+                    </label>
+                    <input 
+                    id="sign-up" name="sign-up" type="text" value={this.state.userName}
+                    onChange={this.handleChagneName} />
+                    <input 
+                    type="button" 
+                    value="Sign Up"
+                    onClick={this.handleHello}
+                    />
+                </form>
+                <HelloGuest name={this.state.SayHello}/>
+            </div>
+
+        )
+    }
+}
+
+class Container extends React.Component {
+    render() {
+        return (
+        <main>
+            <section className="section-filter-table">
+                <FilterableProductTable 
+                ListProduct={PRODUCTS} />
+            </section>
+            <section className="infor-lecture">
+                <ThinkInReact />
+            </section>
+            <section className="sign-up">
+                <SignUp />
+            </section>
+        </main>
+        )
+    }
+}
 ReactDOM.render(
-    <FilterableProductTable ListProduct={PRODUCTS} />,
+    <Container />,
     document.getElementById('root')
 )
