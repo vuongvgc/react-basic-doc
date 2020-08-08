@@ -1760,9 +1760,13 @@ class SearchBar extends React.Component{
     constructor(props) {
         super(props);
         this.handleChagne = this.handleChagne.bind(this);
+        this.handleChangeCheckBox = this.handleChangeCheckBox.bind(this);
     }
     handleChagne(event) {
         this.props.handleChangeFilterSearch(event.target.value);
+    }
+    handleChangeCheckBox(event) {
+        this.props.Oncheckbox(event.target.checked)
     }
     render() {
         return (
@@ -1770,7 +1774,11 @@ class SearchBar extends React.Component{
                 <input type="text" placeholder="search" value={this.props.filterText} onChange={this.handleChagne}/>
                 <br />
                 <label for="stock">
-                    <input type="checkbox" checked={this.props.inStockOnly}/>
+                    <input 
+                    type="checkbox" 
+                    checked={this.props.inStockOnly}
+                    onChange={this.handleChangeCheckBox}
+                    />
                     Only show products in stock
                 </label>
             </form>
@@ -1786,9 +1794,13 @@ class FilterableProductTable extends React.Component {
             inStockOnly: false
         };
         this.handleChangeFilter = this.handleChangeFilter.bind(this);
+        this.handleChangeCheckbox = this.handleChangeCheckbox.bind(this);
     }
     handleChangeFilter(filterInput) {
         this.setState({filterText: filterInput})
+    }
+    handleChangeCheckbox(checkboxInput) {
+        this.setState({inStockOnly: checkboxInput})
     }
     render() {
         return (
@@ -1797,6 +1809,7 @@ class FilterableProductTable extends React.Component {
                 <SearchBar 
                 filterText={this.state.filterText} inStockOnly={this.state.inStockOnly}
                 handleChangeFilterSearch={this.handleChangeFilter}
+                Oncheckbox={this.handleChangeCheckbox}
                  />
                 <ProductTable 
                 product={this.props.ListProduct}
